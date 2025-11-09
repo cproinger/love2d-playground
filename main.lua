@@ -8,8 +8,8 @@ function love.load()
     spieler.geschwindigkeit = 100
 
     local Gegner = require("gegner")
-    gegner = Gegner.new()
-    gegner.x = 800
+    gegner = Gegner.neu()
+    gegner.x = 600
     gegner.y = 200
 end
 

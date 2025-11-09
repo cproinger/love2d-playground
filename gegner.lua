@@ -3,7 +3,7 @@
 local Gegner = { geschwindigkeit = 70, ziel = nil }
 Gegner.__index = Gegner
 
-function Gegner.new()
+function Gegner.neu()
     local self = setmetatable({}, Gegner)
     return self
 end

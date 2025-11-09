@@ -1,5 +1,3 @@
-
-
 local Gegner = { geschwindigkeit = 70, ziel = nil }
 Gegner.__index = Gegner
 

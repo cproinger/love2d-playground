@@ -1,11 +1,8 @@
 
 
 function love.load()
-    spieler = {}
-    spieler.x = 100
-    spieler.y = 200
-    spieler.letztePositionen = {}
-    spieler.geschwindigkeit = 100
+    local Spieler = require("spieler")
+    spieler = Spieler.neu(100, 200);
 
     local Gegner = require("gegner")
     gegner = Gegner.neu()
@@ -14,19 +11,7 @@ function love.load()
 end
 
 function love.update(dt)
-    
-    if (love.keyboard.isDown("right")) then
-        spieler.x = spieler.x + spieler.geschwindigkeit * dt
-    end
-    if (love.keyboard.isDown("left")) then
-        spieler.x = spieler.x - spieler.geschwindigkeit * dt
-    end
-    if (love.keyboard.isDown("down")) then
-        spieler.y = spieler.y + spieler.geschwindigkeit * dt
-    end
-    if (love.keyboard.isDown("up")) then
-        spieler.y = spieler.y - spieler.geschwindigkeit * dt
-    end
+    spieler:bewege(dt, love.keyboard)
     
     table.insert(spieler.letztePositionen, 1, {x = spieler.x, y = spieler.y})
     table.remove(spieler.letztePositionen, 11)  -- Keep only the last 10 positions

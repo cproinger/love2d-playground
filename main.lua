@@ -7,12 +7,11 @@ function love.load()
     player.locationHistory = {}
     player.speed = 100
 
-    enemy = {}
+    local Enemy = require("enemy")
+    enemy = Enemy.new()
     enemy.x = 800
     enemy.y = 200
-    enemy.speed = 70
-
-end    
+end
 
 function love.update(dt)
     
@@ -36,18 +35,8 @@ function love.update(dt)
         enemy.target.x = player.locationHistory[10].x
         enemy.target.y = player.locationHistory[10].y
     end 
-    
-    if (enemy.target) then
-        local dirX = enemy.target.x - enemy.x
-        local dirY = enemy.target.y - enemy.y
-        local length = math.sqrt(dirX * dirX + dirY * dirY)
-        if length > 10 then
-            dirX = dirX / length
-            dirY = dirY / length
-            enemy.x = enemy.x + dirX * enemy.speed * dt
-            enemy.y = enemy.y + dirY * enemy.speed * dt
-        end
-    end
+
+    enemy:update(dt, player)
 end
 
 function love.draw()
